@@ -16,11 +16,18 @@ class LinksController < ApplicationController
 
   def go_to_link
     link = Link.find_by(short_url: params[:short_url])
+    if !link
+      return render_404
+    end
 
     redirect_to link.long_url
   end
 
   private
+
+  def render_404
+    render file: "#{Rails.root}/public/404", status: :not_found
+  end
 
   def link_params
     params.require(:link).permit(:long_url)
