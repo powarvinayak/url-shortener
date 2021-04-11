@@ -1,3 +1,4 @@
+require 'net/http'
 class LinksController < ApplicationController
   def index
     @link = Link.new
@@ -34,8 +35,16 @@ class LinksController < ApplicationController
   def record_stats (link)
     stat = link.stats.new
     remote_ip = request.remote_ip
+    # set hard-coded ip to test on localhost.
+    # remote_ip = "103.48.110.191"  
+    # remote_ip = "162.254.206.227"
+    response = Net::HTTP.get( URI.parse( "https://www.iplocate.io/api/lookup/#{remote_ip}" ) )
+    country = JSON.parse( response )["country"]
+    # default country if not found by IP.
+    country = "India" if !country  
     user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
     stat.ip_address = remote_ip
+    stat.country = country
     stat.browser = user_agent.browser
     stat.os = user_agent.platform
     stat.save
