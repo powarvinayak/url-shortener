@@ -32,6 +32,8 @@ class LinksController < ApplicationController
     end
   end
 
+  private
+
   def record_stats (link)
     stat = link.stats.new
     remote_ip = request.remote_ip
@@ -49,8 +51,6 @@ class LinksController < ApplicationController
     stat.os = user_agent.platform
     stat.save
   end
-
-  private
 
   def render_404
     render file: "#{Rails.root}/public/404_custom", status: :not_found
