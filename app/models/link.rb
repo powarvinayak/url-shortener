@@ -6,6 +6,7 @@ class Link < ApplicationRecord
     before_validation :generate_short_url
 
     has_many :stats
+    has_many :link_country_counts
 
     def generate_short_url
         self.short_url = SecureRandom.uuid[0..4] if self.short_url.nil?
