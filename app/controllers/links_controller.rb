@@ -21,6 +21,13 @@ class LinksController < ApplicationController
     end
 
     redirect_to link.long_url
+    begin
+      # link.no_of_clicks += 1
+      # link.save
+      link.update_attribute(:no_of_clicks, link.no_of_clicks + 1)
+    rescue Exception => e
+      puts e
+    end
   end
 
   private
