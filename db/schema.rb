@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_105057) do
+ActiveRecord::Schema.define(version: 2021_04_11_153744) do
 
   create_table "links", force: :cascade do |t|
     t.string "long_url"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 2021_04_11_105057) do
     t.integer "no_of_clicks", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer "link_id"
+    t.string "ip_address"
+    t.string "country"
+    t.string "browser"
+    t.string "os"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_stats_on_link_id"
   end
 
 end
