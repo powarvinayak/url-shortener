@@ -14,6 +14,12 @@ class LinksController < ApplicationController
     end
   end
 
+  def go_to_link
+    link = Link.find_by(short_url: params[:short_url])
+
+    redirect_to link.long_url
+  end
+
   private
 
   def link_params
