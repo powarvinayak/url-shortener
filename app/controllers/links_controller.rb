@@ -26,7 +26,7 @@ class LinksController < ApplicationController
   private
 
   def render_404
-    render file: "#{Rails.root}/public/404", status: :not_found
+    render file: "#{Rails.root}/public/404_custom", status: :not_found
   end
 
   def link_params
