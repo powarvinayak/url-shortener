@@ -9,4 +9,8 @@ class Link < ApplicationRecord
         self.short_url = SecureRandom.uuid[0..4] if self.short_url.nil?
     end   
 
+    def is_expired
+        created_at < 30.days.ago
+    end
+
 end

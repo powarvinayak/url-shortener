@@ -16,7 +16,7 @@ class LinksController < ApplicationController
 
   def go_to_link
     link = Link.find_by(short_url: params[:short_url])
-    if !link
+    if !link || link.is_expired
       return render_404
     end
 
