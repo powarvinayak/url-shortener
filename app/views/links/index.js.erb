@@ -1,0 +1,4 @@
+var error_msg = document.getElementById('error_message');
+error_msg.innerHTML = "<%= @link.errors.full_messages.first %>";
+var short_url = document.getElementById('short_url');
+short_url.innerHTML = '';
