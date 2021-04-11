@@ -1,2 +1,11 @@
-<h1>Links#index</h1>
-<p>Find me in app/views/links/index.html.erb</p>
+<h1>Welcome to URL Shortener</h1>
+<%= form_with model: @link do |form| %>
+    <label>Please enter your URL here</label>
+    <br/>
+    <%= form.text_field :long_url, :style => "width:500px; margin:10px 0px;" %>
+    <%= form.submit "SHORTEN"%>  
+<% end %>
+    
+<div id="short_url">
+    
+</div>
