@@ -25,9 +25,20 @@ class LinksController < ApplicationController
       # link.no_of_clicks += 1
       # link.save
       link.update_attribute(:no_of_clicks, link.no_of_clicks + 1)
+      record_stats(link)
     rescue Exception => e
       puts e
     end
+  end
+
+  def record_stats (link)
+    stat = link.stats.new
+    remote_ip = request.remote_ip
+    user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
+    stat.ip_address = remote_ip
+    stat.browser = user_agent.browser
+    stat.os = user_agent.platform
+    stat.save
   end
 
   private
