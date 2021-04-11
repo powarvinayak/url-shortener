@@ -32,6 +32,10 @@ class LinksController < ApplicationController
     end
   end
 
+  def stats
+    @links = Link.all
+  end
+
   private
 
   def record_stats (link)
