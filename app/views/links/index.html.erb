@@ -2,7 +2,7 @@
 <%= form_with model: @link do |form| %>
     <label>Please enter your URL here</label>
     <br/>
-    <%= form.text_field :long_url, :style => "width:500px; margin:10px 0px;" %>
+    <%= form.url_field :long_url, :style => "width:500px; margin:10px 0px;", :required => true %>
     <%= form.submit "SHORTEN"%>  
 <% end %>
     
